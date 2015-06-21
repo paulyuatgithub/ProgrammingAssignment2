@@ -17,20 +17,19 @@ makeCacheMatrix <- function(original.matrix = matrix()) {
     original.matrix <<- y
     inverted.matrix <<- NULL
   }
-}
-
-# Functions for getting and setting cached inv. matrix value
-get <- function() original.matrix
-
-# Inversing the matrix using build in solve() function in R
-set.inverse <- function(solve) inverted.matrix <<- solve
-get.inverse <- function() inverted.matrix
-
-list(
-  set = set, 
-  get = get,
-  set.inverse = set.inverse,
-  get.inverse = get.inverse)
+  
+  # Functions for getting and setting cached inv. matrix value
+  get <- function() original.matrix
+  
+  # Inversing the matrix using build in solve() function in R
+  set.inverse <- function(solve) inverted.matrix <<- solve
+  get.inverse <- function() inverted.matrix
+  
+  list(
+    set = set, 
+    get = get,
+    set.inverse = set.inverse,
+    get.inverse = get.inverse)
 
 }
 
@@ -39,7 +38,7 @@ list(
 ## If the inverse has already been calculated (and the matrix has not changed), then the cachesolve should retrieve the inverse from the cache.
 
 cacheSolve <- function(cacheable.matrix, ...) {
-        ## Return a matrix that is the inverse of 'Cacheable Matrix'
+  ## Return a matrix that is the inverse of 'Cacheable Matrix'
   inverted.matrix <- cacheable.matrix$get.inverse()
   # Check if we have cached matrix available.
   if(!is.null(inverted.matrix)) {
